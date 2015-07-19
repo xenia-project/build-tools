@@ -39,17 +39,7 @@ IF %_RESULT% NEQ 0 (
   ECHO this script again.
   EXIT /b 1
 )
-
-SET CLANG_FORMAT=""
-SET LLVM_CLANG_FORMAT="C:\Program Files (x86)\LLVM\bin\clang-format.exe"
-IF EXIST %LLVM_CLANG_FORMAT% (
-  SET CLANG_FORMAT=%LLVM_CLANG_FORMAT%
-) ELSE (
-  1>NUL 2>NUL CMD /c where clang-format
-  IF %ERRORLEVEL% NEQ 0 (
-    SET CLANG_FORMAT="clang-format"
-  )
-)
+CALL %VS14_VCVARSALL% amd64
 
 REM ============================================================================
 REM Fetch Everything
