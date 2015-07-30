@@ -34,6 +34,7 @@ IF %_RESULT% NEQ 0 (
   ECHO.
   ECHO The Community Edition is free and can be downloaded here:
   ECHO https://www.visualstudio.com/downloads/visual-studio-2015-downloads-vs
+  ECHO Make sure to install the Windows SDK.
   ECHO.
   ECHO Once installed, launch the 'Developer Command Prompt for VS2015' and run
   ECHO this script again.
@@ -76,6 +77,11 @@ POPD
 IF %_RESULT% NEQ 0 (
   EXIT /b 1
 )
+
+ECHO.
+ECHO ^> copy third_party\premake-core\bin\release\premake5.exe bin\
+COPY %DIR%\third_party\premake-core\bin\release\premake5.exe %DIR%\bin\
+
 EXIT /b 0
 
 

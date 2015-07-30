@@ -7,7 +7,7 @@ SET VS14_VCVARSALL="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvar
 SET VS15_VCVARSALL="C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC\vcvarsall.bat"
 
 SET PREMAKE_PATH=%DIR%\third_party\premake-core\
-SET PREMAKE_BIN=%PREMAKE_PATH%\bin\release\premake5.exe
+SET PREMAKE_BIN=%DIR%\bin\premake5.exe
 
 CALL :check_msvc
 IF %_RESULT% NEQ 0 (
