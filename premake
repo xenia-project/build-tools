@@ -36,13 +36,7 @@ def main():
   # Ensure the submodule has been checked out.
   if not os.path.exists(os.path.join(premake_path, 'scripts', 'package.lua')):
     print('third_party/premake-core was not present; fetching...')
-    shell_call([
-        'git',
-        'submodule',
-        'update',
-        '--init',
-        '--recursive',
-        ])
+    git_submodule_update()
 
   return_code = shell_call([
       premake5_bin,
@@ -124,6 +118,34 @@ def shell_call(command, throw_on_error=True, stdout_path=None):
     if stdout_file:
       stdout_file.close()
   return result
+
+
+def git_submodule_update():
+  """Runs a full recursive git submodule init and update.
+
+  Older versions of git do not support 'update --init --recursive'. We could
+  check and run it on versions that do support it and speed things up a bit.
+  """
+  shell_call([
+      'git',
+      'submodule',
+      'init',
+      ])
+  shell_call([
+      'git',
+      'submodule',
+      'foreach',
+      '--recursive',
+      'git',
+      'submodule',
+      'init',
+      ])
+  shell_call([
+      'git',
+      'submodule',
+      'update',
+      '--recursive',
+      ])
 
 
 if __name__ == '__main__':
