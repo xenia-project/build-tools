@@ -6,14 +6,12 @@ project("gflags")
   links({
   })
   defines({
-    "PATH_SEPARATOR=%%27\\\\%%27",
     "GFLAGS_DLL_DECL=",
     "GFLAGS_DLL_DEFINE_FLAG=",
     "GFLAGS_DLL_DECLARE_FLAG=",
     "_LIB",
   })
   includedirs({
-    "gflags/src/windows",
     "gflags/src",
   })
   files({
@@ -22,10 +20,19 @@ project("gflags")
     "gflags/src/gflags_reporting.cc",
     "gflags/src/mutex.h",
     "gflags/src/util.h",
-    "gflags/src/windows/config.h",
-    "gflags/src/windows/gflags/gflags.h",
-    "gflags/src/windows/gflags/gflags_completions.h",
-    "gflags/src/windows/gflags/gflags_declare.h",
-    "gflags/src/windows/port.cc",
-    "gflags/src/windows/port.h",
   })
+  filter("platforms:Windows")
+    defines({
+      "PATH_SEPARATOR=%%27\\\\%%27",
+    })
+    includedirs({
+      "gflags/src/windows",
+    })
+    files({
+      "gflags/src/windows/config.h",
+      "gflags/src/windows/gflags/gflags.h",
+      "gflags/src/windows/gflags/gflags_completions.h",
+      "gflags/src/windows/gflags/gflags_declare.h",
+      "gflags/src/windows/port.cc",
+      "gflags/src/windows/port.h",
+    })
