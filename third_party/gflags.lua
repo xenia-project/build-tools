@@ -3,8 +3,17 @@ project("gflags")
   uuid("e319da87-75ed-4517-8f65-bd25e9cc02a3")
   kind("StaticLib")
   language("C++")
-  links({
-  })
+
+  -- These win32-specific overrides must come before others.
+  filter("platforms:Windows")
+    defines({
+      "PATH_SEPARATOR=%%27\\\\%%27",
+    })
+    includedirs({
+      "gflags/src/windows",
+    })
+  filter({})
+
   defines({
     "GFLAGS_DLL_DECL=",
     "GFLAGS_DLL_DEFINE_FLAG=",
@@ -22,12 +31,6 @@ project("gflags")
     "gflags/src/util.h",
   })
   filter("platforms:Windows")
-    defines({
-      "PATH_SEPARATOR=%%27\\\\%%27",
-    })
-    includedirs({
-      "gflags/src/windows",
-    })
     files({
       "gflags/src/windows/config.h",
       "gflags/src/windows/gflags/gflags.h",
