@@ -18,6 +18,13 @@ local function match_platform_files(base_path, base_match)
       base_path.."/"..base_match.."_win.h",
       base_path.."/"..base_match.."_win.cc",
     })
+  filter("platforms:Linux")
+    files({
+      base_path.."/"..base_match.."_posix.h",
+      base_path.."/"..base_match.."_posix.cc",
+      base_path.."/"..base_match.."_linux.h",
+      base_path.."/"..base_match.."_linux.cc",
+    })
 end
 
 -- Adds all .h and .cc files in the current path that match the current platform
